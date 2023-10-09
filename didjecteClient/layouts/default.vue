@@ -23,7 +23,7 @@
                   'p-5 font-bold rounded-t-lg ',
                   //'focus:outline-none focus:outline-offset-0 focus:shadow-[inset_0_0_0_0.2rem_rgba(191,219,254,1)] dark:focus:shadow-[inset_0_0_0_0.2rem_rgba(147,197,253,0.5)]',
                   {
-                      'bg-white text-gray-700 hover:text-gray-600 transition-colors dark:bg-gray-900 dark:text-white/80': state.d_activeIndex !== context.index, // Condition-based hover styles.
+                      'bg-white text-gray-700 dark:bg-gray-900 dark:text-white/80': state.d_activeIndex !== context.index, // Condition-based hover styles.
                       'bg-white text-blue-700 dark:bg-gray-900 dark:text-blue-300': state.d_activeIndex === context.index // Condition-based active styles.
                   }
                 ],
