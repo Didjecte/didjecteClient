@@ -5,6 +5,7 @@ import Tailwind from "primevue/passthrough/tailwind";
 import Avatar from 'primevue/avatar';
 import Button from "primevue/button";
 import Card from 'primevue/card';
+import Chip from 'primevue/chip';
 import MegaMenu from 'primevue/megamenu';
 import Menu from 'primevue/menu';
 import Ripple from 'primevue/ripple';
@@ -20,6 +21,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("Avatar", Avatar);
     nuxtApp.vueApp.component("Button", Button);
     nuxtApp.vueApp.component("Card", Card);
+    nuxtApp.vueApp.component("Chip", Chip);
     nuxtApp.vueApp.component("Menu", Menu);
     nuxtApp.vueApp.component("MegaMenu", MegaMenu);
     nuxtApp.vueApp.component("Sidebar", Sidebar);

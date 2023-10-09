@@ -3,27 +3,117 @@
     <h1 class="text-xl font-bold">
       Manga
     </h1>
-    <div class="grid grid-cols-4 gap-3 mt-10">
-    <div>
-      <Card style="width: 25em">
-        <template #header>
-          <img alt="user header" src="/images/usercard.png" />
-        </template>
-        <template #title> Advanced Card </template>
-        <template #subtitle> Card subtitle </template>
-        <template #content>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-            quas!
-          </p>
-        </template>
-        <template #footer>
-          <Button icon="pi pi-check" label="Save" />
-          <Button icon="pi pi-times" label="Cancel" severity="secondary" style="margin-left: 0.5em" />
-        </template>
-      </Card>
-    </div>
-    <div>2</div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 mt-6">
+      <div v-for="manga in mangas">
+        <!-- add variables-->
+        <Card
+          :pt="{
+            root: {
+              class: ''
+            },
+            body: {
+              class: 'p-0'
+            },
+            title: {
+              class: 'text-md md:text-lg lg:text-xl font-bold capitalize my-2 truncate'
+            },
+            content: {
+              class: 'p-0'
+            }
+          }">
+          <template #header>
+            <Nuxt-link :to="'/manga/' + manga.title">
+              <img :alt="manga.title" :src="coverUrl(manga.title)" />
+            </Nuxt-link>
+          </template>
+          <template #title>
+            <Nuxt-link :to="'/manga/' + manga.title">
+              {{ manga.title }}
+            </Nuxt-link>
+          </template>
+          <template #subtitle>
+            <div class="flex items-center">
+              <div>
+                <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index">
+                  <Chip>
+                    <span class="text-sm text-gray-600 py-1">Chapter {{ manga.lastChapter.index}}</span>
+                  </Chip>
+                </Nuxt-link>
+              </div>
+              <div class="pl-2" v-if="checkNew(manga.lastChapter.date)">
+                <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index">
+                  <span class="bg-red-600 h-5 w-10 text-white text-xs rounded-md flex items-center justify-center">NEW</span>
+                </Nuxt-link>
+              </div>
+            </div>
+          </template>
+        </Card>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+  export default {  
+    data () {
+      return {
+        visible: false,
+        active : ref(0),
+        mangas : [
+          {
+              title: 'didjecte',
+              lastChapter: {
+                index: 4,
+                date: new Date('2023-10-09'),
+                pages: 24
+              },
+              summary: 'Didjecte est un manga de magie. Pif paf boom.',
+              release: 2012,
+              comments: []
+          },
+          {
+              title: 'test',
+              lastChapter: {
+                index: 3,
+                date: new Date('2023-9-09'),
+                pages: 24
+              },
+              summary: 'Didjecte est un manga de magie. Pif paf boom.',
+              release: 2012,
+              comments: []
+          },
+          {
+              title: 'test2',
+              lastChapter: {
+                index: 4,
+                date: new Date('2023-9-15'),
+                pages: 24
+              },
+              summary: 'Didjecte est un manga de magie. Pif paf boom.',
+              release: 2012,
+              comments: []
+          },
+        ]
+      }
+    },
+    methods: {
+      coverUrl (title) {
+        try{ 
+          console.log('test ' + new URL(`@/assets/images/manga/didjecte/cover.jpg`, import.meta.url).href)
+          return new URL(`@/assets/images/manga/didjecte/cover.jpg`, import.meta.url).href
+        }
+        catch (error) {
+          
+        }
+      },
+      
+      //check if chapter is new
+      checkNew(chapterDate) {
+        const today = new Date()
+        const diffTime = Math.abs(today - chapterDate)
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+        return diffDays < 28
+      }
+    }
+  }
+</script>

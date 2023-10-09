@@ -2,7 +2,13 @@
 export default defineNuxtConfig({
   $development: {
     devtools: { enabled: true },
-    app: {
+  },
+  $production: {
+  },
+  devServer: {
+    port: 4444
+  },
+  app: {
       head: {
         titleTemplate: 'Didjecte - %s',
         meta: [
@@ -25,14 +31,12 @@ export default defineNuxtConfig({
         autoprefixer: {},
       },
     },
-    build: {
-      transpile: ["primevue"]
-    }
-  },
-
   devtools: {
     timeline: {
       enabled: true
     }
+  },
+  build: {
+    transpile: ["primevue"]
   }
 })
