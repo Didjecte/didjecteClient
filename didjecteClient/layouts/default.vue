@@ -3,8 +3,8 @@
     <!-- other devices  -->
     <div class="max-md:hidden flex bg-blue-300">
       <div class="max-w-screen-xl mx-auto w-full mx-auto flex">
-        <div class="flex-initial flex justify-center items-center px-2">
-          <img alt="logo" src="https://primefaces.org/cdn/primevue/images/primevue-logo-dark.svg" height="24" class="pt-auto" />
+        <div class="flex-initial flex justify-center items-center w-40 ml-8: mr-12">
+          <img alt="logo" src="~/assets/images/logo.png" class="pt-auto" />
         </div>
         <div class="flex-auto">
           <TabMenu 
