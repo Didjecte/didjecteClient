@@ -20,11 +20,11 @@
               action: ({ context, state }) => ({
                 class: [
                   'cursor-pointer select-none flex items-center relative no-underline overflow-hidden',
-                  'border-b-2 p-5 font-bold rounded-t-lg ',
+                  'p-5 font-bold rounded-t-lg ',
                   //'focus:outline-none focus:outline-offset-0 focus:shadow-[inset_0_0_0_0.2rem_rgba(191,219,254,1)] dark:focus:shadow-[inset_0_0_0_0.2rem_rgba(147,197,253,0.5)]',
                   {
-                      'border-gray-300 bg-white text-gray-700 hover:bg-white hover:border-gray-400 hover:text-gray-600 dark:bg-gray-900 dark:border-blue-900/40 dark:text-white/80 dark:hover:bg-gray-800/80': state.d_activeIndex !== context.index, // Condition-based hover styles.
-                      'bg-white border-blue-500 text-blue-700 dark:bg-gray-900 dark:border-blue-300 dark:text-blue-300': state.d_activeIndex === context.index // Condition-based active styles.
+                      'bg-white text-gray-700 dark:bg-gray-900 dark:text-white/80': state.d_activeIndex !== context.index, // Condition-based hover styles.
+                      'bg-white text-blue-700 dark:bg-gray-900 dark:text-blue-300': state.d_activeIndex === context.index // Condition-based active styles.
                   }
                 ],
                 style: 'top:2px'
@@ -42,7 +42,7 @@
                 }" 
                 :to="item.route" 
                 v-bind="props.action" 
-                class="focus:!shadow-none !rounded-none !top-0 !bg-blue-300 transition ease-in-out hover:scale-110 hover:!bg-blue-400 duration-200">
+                class="test focus:!shadow-none !rounded-none !top-0 !bg-blue-300">
                 <span v-bind="props.icon" />
                 <span v-bind="props.label">{{ label }}</span>
               </NuxtLink>
@@ -195,4 +195,23 @@
     }
   }
   
+  .test:before {
+    content: "";
+    height: 2px;
+    width: 0%;
+    background: rgba(59 ,130 ,246, 1);
+    display: block;
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+  }
+
+  .test:hover:before {
+    width: 50%;
+  }
 </style>
