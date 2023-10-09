@@ -15,7 +15,10 @@ export default defineNuxtConfig({
         ]
       },
     },
-    css: ['~/assets/css/main.css'],
+    css: [
+      '~/assets/css/main.css',
+      'primeicons/primeicons.css'
+    ],
     postcss: {
       plugins: {
         tailwindcss: {},
@@ -24,6 +27,12 @@ export default defineNuxtConfig({
     },
     build: {
       transpile: ["primevue"]
+    }
+  },
+
+  devtools: {
+    timeline: {
+      enabled: true
     }
   }
 })
