@@ -2,7 +2,7 @@
   <div>
     <!-- other devices  -->
     <div class="max-md:hidden flex bg-blue-300">
-      <div class="max-w-screen-xl mx-auto w-full mx-auto flex ">
+      <div class="max-w-screen-xl mx-auto w-full mx-auto flex">
         <div class="flex-initial flex justify-center items-center px-2">
           <img alt="logo" src="https://primefaces.org/cdn/primevue/images/primevue-logo-dark.svg" height="24" class="pt-auto" />
         </div>
@@ -142,8 +142,9 @@
         </div>
       </template>
     </MegaMenu>
-   <slot />
-    <!-- <AppFooter /> -->
+    <div class="max-w-screen-xl mx-auto w-full mx-auto flex pt-5">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -156,9 +157,9 @@
         active : ref(0),
         items : ref([
           {
-              label: 'Home',
-              icon: 'pi pi-fw pi-home',
-              route: '/'
+              label: 'Manga',
+              icon: 'pi pi-fw pi-book',
+              route: '/manga'
           },
           {
               label: 'Video',

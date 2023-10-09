@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="text-6xl font-bold underline">
-        Hello world! manga
+    <h1 class="text-md font-bold underline">
+      Manga
     </h1>
   </div>
 </template>
