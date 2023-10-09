@@ -3,3 +3,9 @@
 @tailwind utilities;
 
 /* main color */
+
+
+/* remove mobile hightlight blue when holding down */
+* {
+    -webkit-tap-highlight-color: transparent;
+  }
