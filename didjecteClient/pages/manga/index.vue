@@ -14,6 +14,9 @@
             body: {
               class: 'p-0'
             },
+            header: {
+              class: 'aspect-[3/4] overflow-hidden'
+            },
             title: {
               class: 'text-md md:text-lg lg:text-xl font-bold capitalize my-2 truncate'
             },
@@ -23,7 +26,8 @@
           }">
           <template #header>
             <Nuxt-link :to="'/manga/' + manga.title">
-              <img :alt="manga.title" :src="coverUrl(manga.title)" />
+              <img :alt="manga.title" :src="coverUrl(manga.title)" v-if="coverUrl(manga.title)"/>
+              <Skeleton class="w-full !h-full" v-else></Skeleton>
             </Nuxt-link>
           </template>
           <template #title>
@@ -54,9 +58,18 @@
 </template>
 
 <script>
+  // const getServiceIcon = async iconName => {
+  //   const module = await import(/* @vite-ignore */ `./assets/images/manga/didjecte/cover.jpg`)
+  //   return module.default.replace(/^\/@fs/, '')
+  // }
+
+  // const logo = ref()
+  // watchEffect(async () => {
+  //   logo.value = (await import(/* @vite-ignore */ `../assets/${props.imagePath}`)).default
+  // })
   export default {  
     data () {
-      return {
+      return {  
         visible: false,
         active : ref(0),
         mangas : [
@@ -97,14 +110,13 @@
       }
     },
     methods: {
-      coverUrl (title) {
-        try{ 
-          console.log('test ' + new URL(`@/assets/images/manga/didjecte/cover.jpg`, import.meta.url).href)
-          return new URL(`@/assets/images/manga/didjecte/cover.jpg`, import.meta.url).href
-        }
-        catch (error) {
-          
-        }
+      coverUrl(title) {
+        //works but be specific or it will load performance
+        const url = import.meta.glob('~/assets/images/manga/**/cover.jpg', {
+          eager: true,
+          import: 'default',
+        })
+        return url['/assets/images/manga/' + title + '/cover.jpg']
       },
       
       //check if chapter is new

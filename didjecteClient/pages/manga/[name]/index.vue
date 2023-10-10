@@ -1,17 +1,20 @@
 <template>
     <div class="flex">
-      <span>Manga: {{ $route.params.name }}</span>
+      <div class="basis-1/2">
+        <Image :src="coverUrl()" alt="Image" width="250" />
+      </div>
+      <div class="basis-1/2">
+        <span>Manga: {{ $route.params.name }}</span>
+      </div>
     </div>
   </template>
   
   <script>
     export default {
-      mounted() {
-        const route = useRoute()
-  
-        // When accessing /posts/1, route.params.id will be 1
-        console.log(route.params)
-  
+      data () {
+        return {
+          visible: false,
+        }
       },
       // created() {
       //   this.$watch(
@@ -21,9 +24,21 @@
       //     }
       //   )
       // },
-      data () {
-        return {
-          visible: false,
+      mounted() {
+        const route = useRoute()
+        console.log(route.params)
+        this.coverUrl()
+        console.log(this.coverUrl())
+
+      },
+      methods: {
+        async coverUrl () {
+          try{ 
+            const url = await new URL(`@/assets/images/manga/didjecte/cover.jpg`, import.meta.url).href
+          }
+          catch (error) {
+            
+          }
         }
       }
     }
