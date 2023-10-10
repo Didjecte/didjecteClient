@@ -4,10 +4,18 @@ import Tailwind from "primevue/passthrough/tailwind";
 
 import Avatar from 'primevue/avatar';
 import Button from "primevue/button";
+import Card from 'primevue/card';
+import Chip from 'primevue/chip';
+import Column from 'primevue/column';
+import DataTable from 'primevue/datatable';
+import Divider from 'primevue/divider';
+import Image from 'primevue/image';
 import MegaMenu from 'primevue/megamenu';
 import Menu from 'primevue/menu';
+import Panel from 'primevue/panel';
 import Ripple from 'primevue/ripple';
 import Sidebar from 'primevue/sidebar';
+import Skeleton from "primevue/skeleton";
 import TabMenu from 'primevue/tabmenu';
 
 
@@ -18,9 +26,17 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     nuxtApp.vueApp.component("Avatar", Avatar);
     nuxtApp.vueApp.component("Button", Button);
+    nuxtApp.vueApp.component("Card", Card);
+    nuxtApp.vueApp.component("Chip", Chip);
+    nuxtApp.vueApp.component("Column", Column);
+    nuxtApp.vueApp.component("DataTable", DataTable);
+    nuxtApp.vueApp.component("Divider", Divider);
+    nuxtApp.vueApp.component("Image", Image);
     nuxtApp.vueApp.component("Menu", Menu);
     nuxtApp.vueApp.component("MegaMenu", MegaMenu);
+    nuxtApp.vueApp.component("Panel", Panel);
     nuxtApp.vueApp.component("Sidebar", Sidebar);
+    nuxtApp.vueApp.component("Skeleton", Skeleton);
     nuxtApp.vueApp.component("TabMenu", TabMenu);
     //other components that you need
 });

@@ -2,9 +2,9 @@
   <div>
     <!-- other devices  -->
     <div class="max-md:hidden flex bg-blue-300">
-      <div class="max-w-screen-xl mx-auto w-full mx-auto flex ">
-        <div class="flex-initial flex justify-center items-center px-2">
-          <img alt="logo" src="https://primefaces.org/cdn/primevue/images/primevue-logo-dark.svg" height="24" class="pt-auto" />
+      <div class=" max-w-screen-xl mx-auto w-full mx-auto flex max-xl:px-8 max-sm:px-4">
+        <div class="flex-initial flex justify-center items-center w-44 mr-12">
+          <img alt="logo" src="~/assets/images/logo.png" class="pt-auto" />
         </div>
         <div class="flex-auto">
           <TabMenu 
@@ -57,7 +57,7 @@
     </div>
 
     <!-- phone -->
-    <MegaMenu orientation="horizontal" class="rounded-none md:hidden flex !bg-blue-300" :pt="{ start: { class: 'w-full' }}">
+    <MegaMenu orientation="horizontal" class="rounded-none md:hidden flex !bg-blue-300 max-xl:px-8 max-sm:px-4" :pt="{ start: { class: 'w-full' }}">
       <template #start>
         <div class="flex">
           <div>
@@ -142,8 +142,7 @@
         </div>
       </template>
     </MegaMenu>
-   <slot />
-    <!-- <AppFooter /> -->
+    <slot />
   </div>
 </template>
 
@@ -156,9 +155,9 @@
         active : ref(0),
         items : ref([
           {
-              label: 'Home',
-              icon: 'pi pi-fw pi-home',
-              route: '/'
+              label: 'Manga',
+              icon: 'pi pi-fw pi-book',
+              route: '/manga'
           },
           {
               label: 'Video',
