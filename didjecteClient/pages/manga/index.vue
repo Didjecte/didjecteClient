@@ -1,72 +1,65 @@
 <template>
-  <div class="w-full">
-    <h1 class="text-xl font-bold">
-      Manga
-    </h1>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 mt-6">
-      <div v-for="manga in mangas">
-        <!-- add variables-->
-        <Card
-          :pt="{
-            root: {
-              class: ''
-            },
-            body: {
-              class: 'p-0'
-            },
-            header: {
-              class: 'aspect-[3/4] overflow-hidden'
-            },
-            title: {
-              class: 'text-md md:text-lg lg:text-xl font-bold capitalize my-2 truncate'
-            },
-            content: {
-              class: 'p-0'
-            }
-          }">
-          <template #header>
-            <Nuxt-link :to="'/manga/' + manga.title">
-              <img :alt="manga.title" :src="coverUrl(manga.title)" v-if="coverUrl(manga.title)"/>
-              <Skeleton class="w-full !h-full" v-else></Skeleton>
-            </Nuxt-link>
-          </template>
-          <template #title>
-            <Nuxt-link :to="'/manga/' + manga.title">
-              {{ manga.title }}
-            </Nuxt-link>
-          </template>
-          <template #subtitle>
-            <div class="flex items-center">
-              <div>
-                <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index">
-                  <Chip>
-                    <span class="text-sm text-gray-600 py-1">Chapter {{ manga.lastChapter.index}}</span>
-                  </Chip>
-                </Nuxt-link>
+  <div class="max-w-screen-xl mx-auto w-full mx-auto flex pt-5 max-xl:px-8 max-sm:px-4">
+    <div class="w-full">
+      <h1 class="text-xl font-bold">
+        Manga
+      </h1>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 mt-6">
+        <div v-for="manga in mangas">
+          <!-- add variables-->
+          <Card
+            :pt="{
+              root: {
+                class: ''
+              },
+              body: {
+                class: 'p-0'
+              },
+              header: {
+                class: 'aspect-[3/4] overflow-hidden'
+              },
+              title: {
+                class: 'text-md md:text-lg lg:text-xl font-bold capitalize my-2 truncate'
+              },
+              content: {
+                class: 'p-0'
+              }
+            }">
+            <template #header>
+              <Nuxt-link :to="'/manga/' + manga.title">
+                <img :alt="manga.title" :src="coverUrl(manga.title)" v-if="coverUrl(manga.title)"/>
+                <Skeleton class="w-full !h-full" v-else></Skeleton>
+              </Nuxt-link>
+            </template>
+            <template #title>
+              <Nuxt-link :to="'/manga/' + manga.title">
+                {{ manga.title }}
+              </Nuxt-link>
+            </template>
+            <template #subtitle>
+              <div class="flex items-center">
+                <div>
+                  <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index">
+                    <Chip>
+                      <span class="text-sm text-gray-600 py-1">Chapter {{ manga.lastChapter.index}}</span>
+                    </Chip>
+                  </Nuxt-link>
+                </div>
+                <div class="pl-2" v-if="checkNew(manga.lastChapter.date)">
+                  <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index">
+                    <span class="bg-red-600 h-5 w-10 text-white text-xs rounded-md flex items-center justify-center">NEW</span>
+                  </Nuxt-link>
+                </div>
               </div>
-              <div class="pl-2" v-if="checkNew(manga.lastChapter.date)">
-                <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index">
-                  <span class="bg-red-600 h-5 w-10 text-white text-xs rounded-md flex items-center justify-center">NEW</span>
-                </Nuxt-link>
-              </div>
-            </div>
-          </template>
-        </Card>
+            </template>
+          </Card>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  // const getServiceIcon = async iconName => {
-  //   const module = await import(/* @vite-ignore */ `./assets/images/manga/didjecte/cover.jpg`)
-  //   return module.default.replace(/^\/@fs/, '')
-  // }
-
-  // const logo = ref()
-  // watchEffect(async () => {
-  //   logo.value = (await import(/* @vite-ignore */ `../assets/${props.imagePath}`)).default
-  // })
   export default {  
     data () {
       return {  
@@ -81,6 +74,7 @@
                 pages: 24
               },
               summary: 'Didjecte est un manga de magie. Pif paf boom.',
+              genre: 'Magie, Combat, Comedy, Adventure',
               release: 2012,
               comments: []
           },
@@ -92,6 +86,7 @@
                 pages: 24
               },
               summary: 'Didjecte est un manga de magie. Pif paf boom.',
+              genre: 'Magie, Combat, Comedy, Adventure',
               release: 2012,
               comments: []
           },
@@ -103,6 +98,7 @@
                 pages: 24
               },
               summary: 'Didjecte est un manga de magie. Pif paf boom.',
+              genre: 'Magie, Combat, Comedy, Adventure',
               release: 2012,
               comments: []
           },

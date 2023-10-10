@@ -142,9 +142,7 @@
         </div>
       </template>
     </MegaMenu>
-    <div class="max-w-screen-xl mx-auto w-full mx-auto flex pt-5 max-xl:px-8 max-sm:px-4">
-      <slot />
-    </div>
+    <slot />
   </div>
 </template>
 

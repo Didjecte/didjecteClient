@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* main color */
+/* main text color */
+body {
+  color: #0a122b;
+}
 
 
 /* remove mobile hightlight blue when holding down */
