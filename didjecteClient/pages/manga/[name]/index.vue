@@ -50,8 +50,8 @@
                     {{ manga.release }}
                   </div>
                   <div class="mt-3">
-                    <Button label="Read First" size="small" class="mr-3" />
-                    <Button label="Read Last" size="small" />
+                    <Button label="Read First" @click="navigateTo({ path: '/manga/' + mangaTitle + '/1'})" size="small" class="mr-3" />
+                    <Button label="Read Last" @click="getLastChapter()" size="small" />
                   </div>
                   <div class="max-md:hidden">
                     <Divider />
@@ -201,6 +201,9 @@
       },
       formattedDate(date) {
         return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+      },
+      getLastChapter() {
+        navigateTo({ path: '/manga/' + this.mangaTitle + '/' + this.manga.lastChapter.index})
       }
     }
   }

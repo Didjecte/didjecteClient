@@ -4,7 +4,9 @@
     <div class="max-md:hidden flex bg-blue-300">
       <div class=" max-w-screen-xl mx-auto w-full mx-auto flex max-xl:px-8 max-sm:px-4">
         <div class="flex-initial flex justify-center items-center w-44 mr-12">
-          <img alt="logo" src="~/assets/images/logo.png" class="pt-auto" />
+          <NuxtLink to="/">
+            <img alt="logo" src="~/assets/images/logo.png" class="pt-auto" />
+          </NuxtLink>
         </div>
         <div class="flex-auto">
           <TabMenu 
