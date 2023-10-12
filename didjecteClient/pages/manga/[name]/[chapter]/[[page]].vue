@@ -640,7 +640,7 @@
 <script setup>
   definePageMeta({
     layout: false,
-  });
+  })
 </script>
 
 <script>
@@ -720,6 +720,11 @@
       if (process.browser) {
         window.addEventListener('keydown', this.onKeyPress)
       }
+      if (!this.page || !this.chapterIndex || this.chapterIndex > this.lastChapterIndex || this.chapterIndex < 1 || this.page > this.chapter.pages || this.page < 1) {
+        // Throw a 404 error
+        setPageLayout('default')
+        throw createError({ statusCode: 404, statusMessage: 'Page Not Found', fatal: true})
+      } 
     },
     unmounted() {
       window.removeEventListener('keydown', this.onKeyPress)
@@ -740,11 +745,11 @@
       },
       onKeyPress(event) { 
         // Check for left arrow key
-        if (event.keyCode === 37) {
+        if (event.keyCode === 37 || event.keyCode === 65) {
           this.changePage(parseInt(this.page)-1)
         }
         // Check for right arrow key
-        else if (event.keyCode === 39) {
+        else if (event.keyCode === 39 || event.keyCode === 68) {
           this.changePage(parseInt(this.page)+1)
         }
       },
@@ -820,7 +825,6 @@
         for (let i = 1; i <= number; i++) {
           result.push({ chapter: String(i), route: '/manga/' + this.mangaTitle + '/' + i + '/1' })
         }
-        console.log(result)
         return result
       }
     }

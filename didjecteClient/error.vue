@@ -16,5 +16,19 @@
   defineProps(['error'])
 </script>
 
+<script>
+  export default {
+    props: {
+      error: {
+        type: Object,
+        default: () => {}
+      }
+    },
+    
+    beforeCreate() {
+      setPageLayout('default')
+    }
+  }
+</script>
 <style scoped>
 </style>
