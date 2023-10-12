@@ -11,4 +11,6 @@ body {
 /* remove mobile hightlight blue when holding down */
 * {
     -webkit-tap-highlight-color: transparent;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
   }

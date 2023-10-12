@@ -2,7 +2,7 @@
   <div>
     <!-- other devices  -->
     <div class="max-md:hidden flex bg-blue-300">
-      <div class=" max-w-screen-xl mx-auto w-full mx-auto flex max-xl:px-8 max-sm:px-4">
+      <div class="max-w-screen-xl mx-auto w-full flex max-xl:px-8 max-sm:px-3">
         <div class="flex-initial flex justify-center items-center w-44 mr-12">
           <NuxtLink to="/">
             <img alt="logo" src="~/assets/images/logo.png" class="pt-auto" />
@@ -59,7 +59,7 @@
     </div>
 
     <!-- phone -->
-    <MegaMenu orientation="horizontal" class="rounded-none md:hidden flex !bg-blue-300 max-xl:px-8 max-sm:px-4" :pt="{ start: { class: 'w-full' }}">
+    <MegaMenu orientation="horizontal" class="rounded-none md:hidden flex !bg-blue-300 max-xl:px-8 max-sm:px-3" :pt="{ start: { class: 'w-full' }}">
       <template #start>
         <div class="flex">
           <div>
@@ -84,7 +84,9 @@
               }">
               <template #header>
                 <div>
-                  <img alt="logo" src="https://primefaces.org/cdn/primevue/images/primevue-logo-dark.svg" height="24" class="mx-auto"/>
+                  <NuxtLink to="/" @click="visible=!visible">
+                    <img alt="logo" src="~/assets/images/logo.png" class="mx-auto"/>
+                  </NuxtLink>
                 </div>
               </template>
               <template #default>
@@ -98,32 +100,24 @@
                       action : ({ context, state }) => ({
                         class: [
                           'text-gray-700 dark:text-white/80 py-3 px-5 select-none', 
-                          'cursor-pointer flex items-center no-underline overflow-hidden relative'
+                          'cursor-pointer flex items-center no-underline overflow-hidden relative',
+                          {
+                            '!text-blue-500': context.item.route === this.$route.path
+                          }
                         ]
                       }),
                       icon : ({ context, state }) => ({
                         class: [
-                          'pi pi-fw pi-youtube dark:text-white/70 mr-2',
-                          {
-                            'text-blue-700': context.item.route === this.$route.path
-                          }
+                          'dark:text-white/70 mr-2'
                         ]
                       }),
                     }" 
                     class="!w-full">
                     <template #item="{ item, label, props }">
                       <NuxtLink 
-                        v-ripple="{
-                          pt: {
-                            root: {
-                              class: 'block absolute bg-blue-300 rounded-full pointer-events-none'
-                            }
-                          }
-                        }" 
                         :to="item.route" 
                         v-bind="props.action" 
-                        @click="visible = false"
-                        active-class="!text-blue-500">
+                        @click="visible = false">
                         <span v-bind="props.icon" />
                         <span v-bind="props.label">{{ label }}</span>
                       </NuxtLink>
@@ -135,7 +129,9 @@
             <Button icon="pi pi-bars" aria-label="Menu" @click="visible = true" :pt="{ label: { style: 'width: 0' }}"/>
           </div>
           <div class="flex-auto flex justify-center items-center px-2">
-            <img alt="logo" src="https://primefaces.org/cdn/primevue/images/primevue-logo-dark.svg" height="24" class="pt-auto" />
+            <NuxtLink to="/">
+              <img alt="logo" src="~/assets/images/logo.png" class="pt-auto h-[50px]" />
+            </NuxtLink>
           </div>
           <div class="flex-initial" >
             <!-- avatar component -->
