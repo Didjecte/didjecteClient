@@ -16,7 +16,7 @@
         <div class="flex flex-wrap md:flex-nowrap w-full gap-5 md:gap-8">
           <div class="flex justify-center basis-full md:basis-1/4">
             <div class="w-60 md:w-auto aspect-[3/4] overflow-hidden bg-white items-center flex justify-center rounded-md" v-if="coverUrl()">
-              <img :src="coverUrl()" alt="Image" class="w-5/6 aspect-[3/4]"/>
+              <img :src="coverUrl()" :alt="mangaTitle" class="w-5/6 aspect-[3/4]"/>
             </div>
             <div class="w-60 md:w-auto aspect-[3/4] overflow-hidden" v-else>
               <Skeleton class="w-full !h-full"></Skeleton>
@@ -50,8 +50,8 @@
                     {{ manga.release }}
                   </div>
                   <div class="mt-3">
-                    <Button label="Read First" size="small" class="mr-3" />
-                    <Button label="Read Last" size="small" />
+                    <Button label="Read First" @click="navigateTo({ path: '/manga/' + mangaTitle + '/1/1'})" size="small" class="mr-3" />
+                    <Button label="Read Last" @click="getLastChapter()" size="small" />
                   </div>
                   <div class="max-md:hidden">
                     <Divider />
@@ -183,6 +183,12 @@
     created() {
       const route = useRoute()
       this.mangaTitle = route.params.name
+      //check if manga exist API
+      if (!this.mangaTitle || this.mangaTitle === '') {
+        // Throw a 404 error
+        setPageLayout('default')
+        throw createError({ statusCode: 404, statusMessage: 'Page Not Found', fatal: true})
+      }
     },
     methods: {
       change(test) {
@@ -197,10 +203,14 @@
         return url['/assets/images/manga/' + this.mangaTitle + '/cover.jpg']
       },
       chapterLink(event) {
-        navigateTo({ path: '/manga/' + this.mangaTitle + '/' + event.data.index })
+        return navigateTo({ path: '/manga/' + this.mangaTitle + '/' + event.data.index + '/1' })
       },
       formattedDate(date) {
         return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+      },
+      getLastChapter() {
+        return navigateTo({ path: '/manga/' + this.mangaTitle + '/' + this.manga.lastChapter.index + '/1'})
+
       }
     }
   }
