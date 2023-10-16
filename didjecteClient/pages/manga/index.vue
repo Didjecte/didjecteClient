@@ -39,14 +39,14 @@
             <template #subtitle>
               <div class="flex items-center">
                 <div>
-                  <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index">
+                  <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index + '/1'">
                     <Chip>
                       <span class="text-sm text-gray-600 py-1">Chapter {{ manga.lastChapter.index}}</span>
                     </Chip>
                   </Nuxt-link>
                 </div>
                 <div class="pl-2" v-if="checkNew(manga.lastChapter.date)">
-                  <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index">
+                  <Nuxt-link :to="'/manga/' + manga.title + '/' + manga.lastChapter.index + '/1'">
                     <span class="bg-red-600 h-5 w-10 text-white text-xs rounded-md flex items-center justify-center">NEW</span>
                   </Nuxt-link>
                 </div>

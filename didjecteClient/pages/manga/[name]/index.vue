@@ -183,6 +183,12 @@
     created() {
       const route = useRoute()
       this.mangaTitle = route.params.name
+      //check if manga exist API
+      if (!this.mangaTitle || this.mangaTitle === '') {
+        // Throw a 404 error
+        setPageLayout('default')
+        throw createError({ statusCode: 404, statusMessage: 'Page Not Found', fatal: true})
+      }
     },
     methods: {
       change(test) {
