@@ -35,13 +35,6 @@
             >
             <template #item="{ label, item, props }">
               <NuxtLink 
-                v-ripple="{
-                  pt: {
-                    root: {
-                      class: 'block absolute bg-blue-300 rounded-full pointer-events-none'
-                    }
-                  }
-                }" 
                 :to="item.route" 
                 v-bind="props.action" 
                 class="test focus:!shadow-none !rounded-none !top-0 !bg-blue-300">
@@ -174,7 +167,7 @@
 </script>
 
 <style scoped>
-  span[data-p-ink-active="true"]{
+  /* span[data-p-ink-active="true"]{
     animation: ripples 1s linear !important;
   }
 
@@ -190,7 +183,7 @@
       opacity: 0;
       transform: scale(2.5);
     }
-  }
+  } */
   
   .test:before {
     content: "";
